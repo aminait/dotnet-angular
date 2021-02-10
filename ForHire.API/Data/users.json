@@ -1,0 +1,47 @@
+[
+    {
+        "Email": "amina@email.com",
+        "FirstName": "Amina",
+        "LastName": "Ait",
+        "Password": "password",
+        "PhotoUrl" : "https://randomuser.me/api/portraits/men/83.jpg",
+        "HeaderPhotoUrl": "https://randomuser.me/api/portraits/men/83.jpg",
+        "CurrentPosition": "Developer",
+        "City": "Famagusta",
+        "Country": "Cyprus",
+        "Description": "Here's some details and description",
+        "Skills": "some skill here",
+        "Created": "2017-08-15",
+        "DateOfBirth": "1999-08-15"
+    },
+    {
+        "Email": "user@email.com",
+        "FirstName": "User",
+        "LastName": "Two",
+        "Password": "password",
+        "PhotoUrl" : "https://randomuser.me/api/portraits/men/86.jpg",
+        "HeaderPhotoUrl": "https://randomuser.me/api/portraits/men/86.jpg",
+        "CurrentPosition": "Developer",
+        "City": "Nicosia",
+        "Country": "Cyprus",
+        "Description": "Here's some details and description for second user",
+        "Skills": "some skill here",
+        "Created": "2019-08-15",
+        "DateOfBirth": "1989-08-15"
+    },
+    {
+        "Email": "sample@email.com",
+        "FirstName": "Sample",
+        "LastName": "User",
+        "Password": "password",
+        "PhotoUrl" : "https://randomuser.me/api/portraits/women/52.jpg",
+        "HeaderPhotoUrl": "https://randomuser.me/api/portraits/women/52.jpg",
+        "CurrentPosition": "Developer",
+        "City": "Kyrenia",
+        "Country": "Cyprus",
+        "Description": "Here's some details and description for other user",
+        "Skills": "some skill here",
+        "Created": "2020-08-15",
+        "DateOfBirth": "1991-08-15"
+    }
+]
