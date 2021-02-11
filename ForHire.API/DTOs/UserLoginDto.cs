@@ -2,13 +2,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ForHire.API.DTOs
 {
-    public class RegisterDto
+    public class UserLoginDto
     {
-        [Required]
+        [Required(ErrorMessage = "Email is required")]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        [Required]
-        [StringLength(8, MinimumLength = 4, ErrorMessage = "Password must be between 4 to 8 characters")]
+        [Required(ErrorMessage = "Password is required")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
     }

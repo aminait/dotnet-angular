@@ -21,7 +21,7 @@ namespace ForHire.API.Data
 
                     user.PasswordHash = passwordHash;
                     user.PasswordSalt = passwordSalt;
-
+                    user.Email = user.Email.ToLower();
                     context.Users.Add(user);
                 }
 
@@ -29,20 +29,20 @@ namespace ForHire.API.Data
             }
         }
 
-        public static void SeedJobListings(DataContext context)
-        {
-            if (!context.JobListings.Any())
-            {
-                var jobListingsData = System.IO.File.ReadAllText("Data/job-listings.json");
-                var jobListings = JsonConvert.DeserializeObject<List<JobListing>>(jobListingsData);
-                foreach (var jobListing in jobListings)
-                {
-                    context.JobListings.Add(jobListing);
-                }
+        // public static void SeedJobListings(DataContext context)
+        // {
+        //     if (!context.JobListings.Any())
+        //     {
+        //         var jobListingsData = System.IO.File.ReadAllText("Data/job-listings.json");
+        //         var jobListings = JsonConvert.DeserializeObject<List<JobListing>>(jobListingsData);
+        //         foreach (var jobListing in jobListings)
+        //         {
+        //             context.JobListings.Add(jobListing);
+        //         }
 
-                context.SaveChanges();
-            }
-        }
+        //         context.SaveChanges();
+        //     }
+        // }
 
         private static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
