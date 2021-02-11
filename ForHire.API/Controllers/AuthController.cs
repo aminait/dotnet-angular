@@ -28,11 +28,11 @@ namespace ForHire.API.Controllers
             _config = config;
         }
 
-        // POST http://localhost:5000/api/auth/register
+        // POST http://localhost:5000/api/auth/signup
 
         [AllowAnonymous]
-        [HttpPost("register")]
-        public async Task<IActionResult> Register(UserRegisterDto userRegisterDto)
+        [HttpPost("signup")]
+        public async Task<IActionResult> Signup(UserRegisterDto userRegisterDto)
         {
             if (!ModelState.IsValid)
             {
@@ -49,7 +49,7 @@ namespace ForHire.API.Controllers
                 LastName = userRegisterDto.LastName
 
             };
-            var createdUser = _repo.Register(userToCreate, userRegisterDto.Password);
+            var createdUser = _repo.Signup(userToCreate, userRegisterDto.Password);
             return StatusCode(201);
         }
 

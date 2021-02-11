@@ -27,7 +27,7 @@ namespace ForHire.API.Data
                 return null;
             }
             return user;
-            
+
         }
 
         private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
@@ -37,16 +37,16 @@ namespace ForHire.API.Data
                 var computedHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
                 for (int i = 0; i < computedHash.Length; i++)
                 {
-                    if(computedHash[i] != passwordHash[i]) return false;
+                    if (computedHash[i] != passwordHash[i]) return false;
                 }
             }
             return true;
         }
 
-        public async Task<User> Register(User user, string password)
+        public async Task<User> Signup(User user, string password)
         {
             byte[] passwordHash, passwordSalt;
-            CreatePasswordHash(password,out passwordHash,out passwordSalt);
+            CreatePasswordHash(password, out passwordHash, out passwordSalt);
             user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt;
 

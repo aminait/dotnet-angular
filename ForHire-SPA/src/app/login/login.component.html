@@ -1,0 +1,38 @@
+<div class="container col-md-4 col-md-offset-4 mt-5">
+  <form #loginForm="ngForm" (ngSubmit)="login()">
+    <h2 class="text-center text-primary">Login</h2>
+
+    <hr />
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        required
+        name="email"
+        placeholder="Email"
+        [(ngModel)]="model.email"
+      />
+    </div>
+
+    <div class="form-group">
+      <input
+        type="password"
+        class="form-control"
+        required
+        name="password"
+        placeholder="Password"
+        [(ngModel)]="model.password"
+      />
+    </div>
+
+    <div class="form-group text-center">
+      <button
+        [disabled]="!loginForm.valid"
+        class="btn btn-success mr-2"
+        type="submit"
+      >
+        Login
+      </button>
+    </div>
+  </form>
+</div>

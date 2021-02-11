@@ -1,0 +1,69 @@
+<!-- <nav class="navbar navbar-dark bg-dark navbar-expand-lg"> -->
+<nav
+  class="navbar navbar-light navbar-expand-lg"
+  style="background-color: #f7f7f7"
+>
+  <!-- Navbar content -->
+
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <!-- logo -->
+      <img
+        src="/docs/5.0/assets/brand/bootstrap-logo.svg"
+        alt=""
+        width="30"
+        height="24"
+        class="d-inline-block align-top"
+      />
+      For Hire
+    </a>
+
+    <a class="nav-link" (click)="logout()">Logout</a>
+
+    <!-- search input field -->
+    <form class="d-flex justify-content-center">
+      <input
+        class="form-control mr-2 col-md-12 input-space"
+        type="search"
+        placeholder="Search job opportunities..."
+        aria-label="Search"
+      />
+      <button class="btn btn-outline-primary" type="submit">Search</button>
+    </form>
+
+    <!-- if logged in -->
+    <!-- add other icons for other functionalities -->
+    <div *ngIf="loggedIn()" class="dropdown">
+      <button class="dropdown-toggle">Profile</button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <li>
+          <a class="dropdown-item" href="#"
+            ><i class="fa fa-user"></i>Edit Profile</a
+          >
+        </li>
+        <div class="dropdown-divider"></div>
+        <li>
+          <a class="dropdown-item" href="#"
+            ><i class="fa fa-cog"></i>Settings</a
+          >
+        </li>
+        <div class="dropdown-divider"></div>
+        <li>
+          <a class="dropdown-item" href="#"
+            ><i class="fa fa-sign-out-alt"></i>Sign Out</a
+          >
+        </li>
+      </ul>
+    </div>
+
+    <!-- if not logged in  -->
+    <ul *ngIf="!loggedIn()" class="nav justify-content-end">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="#">Join</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Login</a>
+      </li>
+    </ul>
+  </div>
+</nav>
