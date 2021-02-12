@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { MessagesComponent } from './messages/messages.component';
 import { NotifsComponent } from './notifs/notifs.component';
 import { SignupComponent } from './signup/signup.component';
+import { AuthGuard } from './_guards/auth.guard';
 
 export const appRoutes: Routes = [
   {
@@ -25,16 +26,23 @@ export const appRoutes: Routes = [
     component: JobsListComponent,
   },
   {
-    path: 'jobs-applied',
-    component: JobsAppliedComponent,
-  },
-  {
-    path: 'messages',
-    component: MessagesComponent,
-  },
-  {
-    path: 'notifications',
-    component: NotifsComponent,
+    path: '',
+    runGuardsAndResolvers: 'always',
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: 'jobs-applied',
+        component: JobsAppliedComponent,
+      },
+      {
+        path: 'messages',
+        component: MessagesComponent,
+      },
+      {
+        path: 'notifications',
+        component: NotifsComponent,
+      },
+    ],
   },
   {
     path: '**',

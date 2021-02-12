@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +19,7 @@ import { NotifsComponent } from './notifs/notifs.component';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
 import { AlertifyService } from './_services/alertify.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { AlertifyService } from './_services/alertify.service';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    BsDropdownModule.forRoot(),
     RouterModule.forRoot(appRoutes),
+    BrowserAnimationsModule,
   ],
   providers: [AuthService, ErrorInterceptorProvider, AlertifyService],
   bootstrap: [AppComponent],

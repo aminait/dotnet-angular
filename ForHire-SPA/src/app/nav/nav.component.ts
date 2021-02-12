@@ -10,7 +10,7 @@ import { AlertifyService } from '../_services/alertify.service';
 })
 export class NavComponent implements OnInit {
   constructor(
-    private authService: AuthService,
+    public authService: AuthService,
     private router: Router,
     private alertify: AlertifyService
   ) {}
@@ -18,8 +18,7 @@ export class NavComponent implements OnInit {
   ngOnInit() {}
 
   loggedIn() {
-    const token = localStorage.getItem('token');
-    return !!token;
+    return this.authService.loggedIn();
   }
 
   logout() {

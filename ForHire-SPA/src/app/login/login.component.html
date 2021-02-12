@@ -1,6 +1,6 @@
 <div class="container col-md-4 col-md-offset-4 mt-5">
   <form #loginForm="ngForm" (ngSubmit)="login()">
-    <h2 class="text-center text-primary">Login</h2>
+    <h2 class="text-center text-heading">Login</h2>
 
     <hr />
     <div class="form-group">
@@ -28,7 +28,7 @@
     <div class="form-group text-center">
       <button
         [disabled]="!loginForm.valid"
-        class="btn btn-success mr-2"
+        class="btn btn-primary btn-lg mr-2"
         type="submit"
       >
         Login

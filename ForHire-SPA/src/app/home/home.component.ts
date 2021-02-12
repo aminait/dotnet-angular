@@ -1,24 +1,23 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
   registerMode = false;
 
-  constructor() { }
+  constructor(private router: Router) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  registerToggle(){
+  registerToggle() {
     this.registerMode = true;
   }
 
-  cancelRegisterMode(registerMode: boolean){
-    this.registerMode = registerMode
+  cancel() {
+    this.router.navigate(['/home']);
   }
-
 }

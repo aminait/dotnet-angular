@@ -67,6 +67,7 @@ namespace ForHire.API.Controllers
             var claims = new[] {
                 new Claim(ClaimTypes.NameIdentifier,userFromRepo.Id.ToString()),
                 new Claim(ClaimTypes.Email, userFromRepo.Email),
+                new Claim(ClaimTypes.Name, userFromRepo.FirstName),
             };
 
             // hashed key to sign token

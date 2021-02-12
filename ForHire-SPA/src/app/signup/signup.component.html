@@ -1,63 +1,69 @@
-<form #registerForm="ngForm" (ngSubmit)="signup()">
-  <h3 class="text-center text-primary">Sign Up</h3>
-  <hr />
-  <div class="form-group">
-    <input
-      type="text"
-      class="form-control"
-      required
-      placeholder="Email"
-      name="email"
-      [(ngModel)]="model.email"
-    />
-  </div>
-  <div class="form-group">
-    <input
-      type="text"
-      class="form-control"
-      required
-      placeholder="First Name"
-      name="firstName"
-      [(ngModel)]="model.firstName"
-    />
-  </div>
-  <div class="form-group">
-    <input
-      type="text"
-      class="form-control"
-      required
-      placeholder="Last Name"
-      name="lastName"
-      [(ngModel)]="model.lastName"
-    />
-  </div>
-  <div class="form-group">
-    <input
-      type="password"
-      class="form-control"
-      required
-      placeholder="Password"
-      name="password"
-      [(ngModel)]="model.password"
-    />
-  </div>
-  <div class="form-group">
-    <input
-      type="password"
-      required
-      class="form-control"
-      placeholder="Confirm Password"
-      name="confirmPassword"
-      [(ngModel)]="model.confirmPassword"
-    />
-  </div>
+<div class="container col-md-4 col-md-offset-4 mt-5">
+  <form #registerForm="ngForm" (ngSubmit)="signup()">
+    <h3 class="text-center fw-light text-heading">Sign Up</h3>
+    <hr />
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        required
+        placeholder="Email"
+        name="email"
+        [(ngModel)]="model.email"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        required
+        placeholder="First Name"
+        name="firstName"
+        [(ngModel)]="model.firstName"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        required
+        placeholder="Last Name"
+        name="lastName"
+        [(ngModel)]="model.lastName"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="password"
+        class="form-control"
+        required
+        placeholder="Password"
+        name="password"
+        [(ngModel)]="model.password"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="password"
+        required
+        class="form-control"
+        placeholder="Confirm Password"
+        name="confirmPassword"
+        [(ngModel)]="model.confirmPassword"
+      />
+    </div>
 
-  <div class="form-group text-center">
-    <button class="btn btn-success btn-lg mr-2" type="submit">Sign Up</button>
-    <button class="btn btn-danger btn-lg" type="button" (click)="cancel()">
-      Cancel
-    </button>
-    <p>By continuing... terms and conditions....</p>
-    <p>Already have an account? <a href="#">Log in</a></p>
-  </div>
-</form>
+    <div class="form-group text-center">
+      <button class="btn btn-primary btn-lg mr-2" type="submit">Sign Up</button>
+      <button
+        class="btn btn-outline-danger btn-lg"
+        type="button"
+        (click)="cancel()"
+      >
+        Cancel
+      </button>
+      <p>By continuing... terms and conditions....</p>
+      <p>Already have an account? <a [routerLink]="['/login']">Log in</a></p>
+    </div>
+  </form>
+</div>
