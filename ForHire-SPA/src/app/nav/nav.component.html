@@ -6,7 +6,7 @@
   <!-- Navbar content -->
 
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" [routerLink]="['/home']">
       <!-- logo -->
       <img
         src="/docs/5.0/assets/brand/bootstrap-logo.svg"
@@ -17,8 +17,6 @@
       />
       For Hire
     </a>
-
-    <a class="nav-link" (click)="logout()">Logout</a>
 
     <!-- search input field -->
     <form class="d-flex justify-content-center">
@@ -32,37 +30,73 @@
     </form>
 
     <!-- if logged in -->
-    <!-- add other icons for other functionalities -->
-    <div *ngIf="loggedIn()" class="dropdown">
-      <button class="dropdown-toggle">Profile</button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <li>
-          <a class="dropdown-item" href="#"
-            ><i class="fa fa-user"></i>Edit Profile</a
-          >
+    <div *ngIf="loggedIn()">
+      <ul class="nav justify-content-end">
+        <li class="nav-item" routerLinkActive="active">
+          <a [routerLink]="['/home']" class="mr-4"
+            ><i class="fa fa-bullseye"></i
+          ></a>
         </li>
-        <div class="dropdown-divider"></div>
-        <li>
-          <a class="dropdown-item" href="#"
-            ><i class="fa fa-cog"></i>Settings</a
-          >
+        <li class="nav-item" routerLinkActive="active">
+          <a [routerLink]="['/notifications']" class="mr-4"
+            ><i class="fa fa-bell"></i
+          ></a>
         </li>
-        <div class="dropdown-divider"></div>
-        <li>
-          <a class="dropdown-item" href="#"
-            ><i class="fa fa-sign-out-alt"></i>Sign Out</a
-          >
+
+        <li class="nav-item" routerLinkActive="active">
+          <a [routerLink]="['/messages']" class="mr-4"
+            ><i class="fa fa-comments"></i
+          ></a>
         </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a [routerLink]="['/jobs-applied']" class="mr-4"
+            ><i class="fa fa-archive"></i
+          ></a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" (click)="logout()">Logout</a>
+        </li>
+
+        <!-- profile dropdown -->
+        <div class="dropdown">
+          <button class="dropdown-toggle">
+            <i class="fa fa-user"></i>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <li>
+              <a class="dropdown-item" href="#"
+                ><i class="fa fa-user"></i>Edit Profile</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="#"
+                ><i class="fa fa-cog"></i>Settings</a
+              >
+            </li>
+            <div class="dropdown-divider"></div>
+            <li>
+              <a class="dropdown-item" href="#"
+                ><i class="fa fa-sign-out-alt"></i>Sign Out</a
+              >
+            </li>
+          </ul>
+        </div>
       </ul>
     </div>
 
     <!-- if not logged in  -->
     <ul *ngIf="!loggedIn()" class="nav justify-content-end">
       <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="#">Join</a>
+        <a
+          class="nav-link active"
+          aria-current="page"
+          [routerLink]="['/signup']"
+          >Sign Up</a
+        >
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Login</a>
+        <a class="nav-link" [routerLink]="['/login']">Login</a>
       </li>
     </ul>
   </div>

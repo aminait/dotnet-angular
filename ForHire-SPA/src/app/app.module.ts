@@ -10,24 +10,35 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './_services/auth.service';
+import { ErrorInterceptorProvider } from './_services/error.interceptor';
+import { JobsListComponent } from './jobs-list/jobs-list.component';
+import { MessagesComponent } from './messages/messages.component';
+import { JobsAppliedComponent } from './jobs-applied/jobs-applied.component';
+import { NotifsComponent } from './notifs/notifs.component';
+import { RouterModule } from '@angular/router';
+import { appRoutes } from './routes';
+import { AlertifyService } from './_services/alertify.service';
 
 @NgModule({
-  declarations: [				
+  declarations: [
     AppComponent,
-      NavComponent,
-      SignupComponent,
-      LoginComponent,
-      HomeComponent
-   ],
+    NavComponent,
+    SignupComponent,
+    LoginComponent,
+    HomeComponent,
+    JobsListComponent,
+    MessagesComponent,
+    JobsAppliedComponent,
+    NotifsComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(appRoutes),
   ],
-  providers: [
-    AuthService
-  ],
-  bootstrap: [AppComponent]
+  providers: [AuthService, ErrorInterceptorProvider, AlertifyService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
