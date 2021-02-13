@@ -3,20 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { JobsAppliedComponent } from './jobs-applied.component';
+import { HomeUserComponent } from './home-user.component';
 
-describe('JobsAppliedComponent', () => {
-  let component: JobsAppliedComponent;
-  let fixture: ComponentFixture<JobsAppliedComponent>;
+describe('HomeUserComponent', () => {
+  let component: HomeUserComponent;
+  let fixture: ComponentFixture<HomeUserComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [JobsAppliedComponent],
-    }).compileComponents();
+      declarations: [ HomeUserComponent ]
+    })
+    .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(JobsAppliedComponent);
+    fixture = TestBed.createComponent(HomeUserComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -25,6 +26,3 @@ describe('JobsAppliedComponent', () => {
     expect(component).toBeTruthy();
   });
 });
-function beforeEach(arg0: (done: any) => any) {
-  throw new Error('Function not implemented.');
-}

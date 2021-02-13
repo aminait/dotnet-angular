@@ -12,14 +12,15 @@ import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './_services/auth.service';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
-import { JobsListComponent } from './jobs-list/jobs-list.component';
+import { JobsListComponent } from './jobs/jobs-list/jobs-list.component';
 import { MessagesComponent } from './messages/messages.component';
-import { JobsAppliedComponent } from './jobs-applied/jobs-applied.component';
+import { AppliedJobsComponent } from './applied-jobs/applied-jobs.component';
 import { NotifsComponent } from './notifs/notifs.component';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
 import { AlertifyService } from './_services/alertify.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HomeUserComponent } from './home-user/home-user.component';
 
 @NgModule({
   declarations: [
@@ -30,8 +31,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HomeComponent,
     JobsListComponent,
     MessagesComponent,
-    JobsAppliedComponent,
+    AppliedJobsComponent,
     NotifsComponent,
+    HomeUserComponent,
   ],
   imports: [
     BrowserModule,

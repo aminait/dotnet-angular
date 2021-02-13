@@ -1,0 +1,114 @@
+<div class="container-fluid mt-4">
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="card">
+        <div class="card-header text-center">Profile</div>
+        <img src="..." class="card-img-top" alt="..." />
+        <div class="card-body">
+          <h5 class="card-text text-center">
+            <strong>{{ authService.decodedToken?.unique_name }} Doe </strong>
+          </h5>
+          <p class="text-muted text-center">Job Title here</p>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <p class="alignLeft">Followers</p>
+              <p class="alignRight">30</p>
+            </li>
+            <li class="list-group-item">
+              <p class="alignLeft">Following</p>
+              <p class="alignRight">25</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card text-center">
+        <div class="card-header">
+          <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Feed</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Trending</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Discover</a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link disabled"
+                href="#"
+                tabindex="-1"
+                aria-disabled="true"
+                >Disabled</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="card-body tl">
+          <div class="card">
+            <div class="card-body tl">
+              <h5 class="card-title"><a href="#">Author Name</a></h5>
+              <p class="card-text">
+                <small class="text-muted">Author job position</small>
+              </p>
+              <p class="card-text">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              </p>
+            </div>
+          </div>
+
+          <!-- add footer options -->
+          <div class="card-footer border-secondary text-right mb-4">
+            <a href="#"><i class="fa fa-thumb-tack mr-2"></i>Likes</a>
+            <a href="#"
+              ><i class="fa fa-times-circle-o ml-4 mr-2"></i>Comments</a
+            >
+          </div>
+
+          <div class="card">
+            <div class="card-body tl">
+              <h5 class="card-title"><a href="#">Author Name</a></h5>
+              <p class="card-text">
+                <small class="text-muted">Author job position</small>
+              </p>
+              <p class="card-text">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              </p>
+            </div>
+          </div>
+
+          <!-- add footer options -->
+          <div class="card-footer border-secondary text-right mb-4">
+            <a href="#"><i class="fa fa-thumb-tack mr-2"></i>Likes</a>
+            <a href="#"
+              ><i class="fa fa-times-circle-o ml-4 mr-2"></i>Comments</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="card">
+        <div class="card-header text-center">People you might know</div>
+        <ul class="list-group list-group-flush text-center">
+          <li class="list-group-item">
+            <p>Person 1</p>
+          </li>
+          <li class="list-group-item">
+            <p>Person 2</p>
+          </li>
+          <li class="list-group-item">
+            <p>Person 3</p>
+          </li>
+          <li class="list-group-item">
+            <p>Person 4</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

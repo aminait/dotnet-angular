@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-jobs-list',
@@ -6,8 +6,6 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./jobs-list.component.scss'],
 })
 export class JobsListComponent implements OnInit {
-  model: any = {};
-
   constructor() {}
 
   ngOnInit() {}

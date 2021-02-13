@@ -47,6 +47,6 @@ export class SignupComponent implements OnInit {
   cancel() {
     this.cancelRegister.emit(false);
     console.log('cancelling sign up');
-    this.router.navigate(['/home']);
+    this.router.navigate(['/']);
   }
 }
