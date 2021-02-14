@@ -1,0 +1,24 @@
+[
+    {
+        "PhotoUrl": "#",
+        "CompanyName": "Dunder Mifflin",
+        "Tagline": "We are totally a real company",
+        "CompanySize": 150,
+        "Description": "Hello world, description text here",
+        "Field": "Publishing",
+        "SocialProfiles": ["www.website.com", null, null, null],
+        "City": "Seattle",
+        "Country": "USA"
+    },
+    {
+        "PhotoUrl": "#",
+        "CompanyName": "Mobile Industries",
+        "Tagline": "We are kind of a big company",
+        "CompanySize": 800,
+        "Description": "Hello world, description text here for mobile industries",
+        "Field": "Software Development",
+        "SocialProfiles": ["www.website.com", "twitter.com", "facebook.com", "linkedin.com"],
+        "City": "Istanbul",
+        "Country": "Turkey"
+    }
+]

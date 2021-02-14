@@ -5,7 +5,7 @@
 >
   <!-- Navbar content -->
 
-  <div class="container-fluid">
+  <div class="container-fluid" *ngIf="!loggedIn()">
     <div class="navbar-header">
       <a class="navbar-brand" *ngIf="!loggedIn()" [routerLink]="['']">
         <!-- logo -->
@@ -17,10 +17,6 @@
           class="d-inline-block align-top"
         /> -->
         <i class="fa fa-building ml-2"></i>
-        For Hire
-      </a>
-      <a class="navbar-brand" *ngIf="loggedIn()" [routerLink]="['home']"
-        ><i class="fa fa-building ml-2"></i>
         For Hire
       </a>
     </div>
@@ -43,8 +39,48 @@
       </div>
     </form>
 
+    <!-- if not logged in  -->
+    <ul class="nav justify-content-end" *ngIf="!loggedIn()">
+      <li class="nav-item">
+        <a
+          class="nav-link active"
+          aria-current="page"
+          [routerLink]="['/signup']"
+          >Sign Up</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/login']">Login</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="container-fluid" *ngIf="loggedIn()">
+    <div class="navbar-header">
+      <a class="navbar-brand" *ngIf="loggedIn()" [routerLink]="['home']">
+        <i class="fa fa-building ml-2"></i>
+        For Hire
+      </a>
+    </div>
+    <!-- search input field -->
+    <form class="navbar-form navbar-search-form active mt-3">
+      <div class="form-group">
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control mr-2 col-md-12"
+            placeholder="Search job opportunities..."
+          />
+          <span class="input-group-btn">
+            <button class="btn btn-outline-primary" type="button">
+              <i class="fa fa-search"></i>
+            </button>
+          </span>
+        </div>
+      </div>
+    </form>
     <!-- if logged in -->
-    <ul *ngIf="loggedIn()" class="navbar-nav">
+    <ul class="navbar-nav" *ngIf="loggedIn()">
       <li class="nav-item" routerLinkActive="active">
         <a [routerLink]="['/jobs']" class="mr-4"
           ><i class="fa fa-bullseye fa-lg"></i
@@ -87,21 +123,6 @@
             ><i class="fa fa-sign-out mr-2"></i>Sign Out</a
           >
         </ul>
-      </li>
-    </ul>
-
-    <!-- if not logged in  -->
-    <ul *ngIf="!loggedIn()" class="nav justify-content-end">
-      <li class="nav-item">
-        <a
-          class="nav-link active"
-          aria-current="page"
-          [routerLink]="['/signup']"
-          >Sign Up</a
-        >
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/login']">Login</a>
       </li>
     </ul>
   </div>

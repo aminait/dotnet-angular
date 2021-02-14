@@ -25,6 +25,8 @@ namespace ForHire.API
                     var context = services.GetRequiredService<DataContext>();
                     context.Database.Migrate();
                     Seed.SeedUsers(context);
+                    Seed.SeedJobListings(context);
+                    // Seed.SeedCompanies(context);
                 }
                 catch (Exception ex)
                 {

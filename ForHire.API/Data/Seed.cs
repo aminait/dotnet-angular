@@ -29,15 +29,30 @@ namespace ForHire.API.Data
             }
         }
 
-        // public static void SeedJobListings(DataContext context)
+        public static void SeedJobListings(DataContext context)
+        {
+            if (!context.JobListings.Any())
+            {
+                var jobListingsData = System.IO.File.ReadAllText("Data/job-listings.json");
+                var jobListings = JsonConvert.DeserializeObject<List<JobListing>>(jobListingsData);
+                foreach (var jobListing in jobListings)
+                {
+                    context.JobListings.Add(jobListing);
+                }
+
+                context.SaveChanges();
+            }
+        }
+
+        // public static void SeedCompanies(DataContext context)
         // {
-        //     if (!context.JobListings.Any())
+        //     if (!context.Companies.Any())
         //     {
-        //         var jobListingsData = System.IO.File.ReadAllText("Data/job-listings.json");
-        //         var jobListings = JsonConvert.DeserializeObject<List<JobListing>>(jobListingsData);
-        //         foreach (var jobListing in jobListings)
+        //         var companiesData = System.IO.File.ReadAllText("Data/companies.json");
+        //         var companies = JsonConvert.DeserializeObject<List<Companies>>(companiesData);
+        //         foreach (var company in companies)
         //         {
-        //             context.JobListings.Add(jobListing);
+        //             context.Companies.Add(company);
         //         }
 
         //         context.SaveChanges();

@@ -10,10 +10,10 @@ import { SignupComponent } from './signup/signup.component';
 import { AuthGuard } from './_guards/auth.guard';
 
 export const appRoutes: Routes = [
-  // {
-  //   path: '',
-  //   component: HomeComponent,
-  // },
+  {
+    path: '',
+    component: HomeComponent,
+  },
   {
     path: 'home',
     component: HomeUserComponent,

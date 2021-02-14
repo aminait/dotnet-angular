@@ -4,3 +4,5 @@ obj
 *.db
 appsettings.json
 Migrations
+ForHire.db-shm
+ForHire.db-wal
