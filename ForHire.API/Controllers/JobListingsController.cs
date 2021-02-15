@@ -66,6 +66,16 @@ namespace ForHire.API.Controllers
 
             return Ok(tags);
         }
+
+        // GET http://localhost:5000/api/jobs/{id}/company
+        [HttpGet("{id}/company")]
+        public async Task<IActionResult> GetCompanyByJobId(int id)
+        {
+            var job = await _repo.GetJobListing(id);
+            var company = await _repo.GetCompany(job.CompanyId);
+            var companyDetailsDto = _mapper.Map<CompanyDetailsDto>(company);
+            return Ok(companyDetailsDto);
+        }
     }
 
 }

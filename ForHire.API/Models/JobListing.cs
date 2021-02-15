@@ -17,6 +17,7 @@ namespace ForHire.API.Models
         public bool IsSaved { get; set; }
         public bool HasApplied { get; set; }
         public bool isHidden { get; set; }
+        public bool isExpanded { get; set; }
         public DateTime DatePosted { get; set; }
         public virtual ICollection<Industry> Industries { get; set; }
         public virtual ICollection<Tag> Tags { get; set; }

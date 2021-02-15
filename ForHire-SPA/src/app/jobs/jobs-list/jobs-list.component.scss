@@ -1,3 +1,23 @@
 .shadow {
   box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.2);
 }
+.alignLeft {
+  float: left;
+}
+.alignRight {
+  float: right;
+}
+.container-overflow {
+  font-size: 16px;
+  line-height: 16px;
+  height: 32px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+.show {
+  overflow: visible;
+  height: auto;
+}
+a {
+  cursor: pointer;
+}

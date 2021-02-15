@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +23,7 @@ import { appRoutes } from './routes';
 import { AlertifyService } from './_services/alertify.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeUserComponent } from './home-user/home-user.component';
+import { JobsService } from './_services/jobs.service';
 
 @NgModule({
   declarations: [
@@ -43,11 +46,14 @@ import { HomeUserComponent } from './home-user/home-user.component';
     BsDropdownModule.forRoot(),
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
+    ModalModule.forRoot(),
+    AccordionModule.forRoot(),
   ],
   providers: [
     AuthService,
     // ErrorInterceptorProvider,
     AlertifyService,
+    JobsService,
   ],
   bootstrap: [AppComponent],
 })

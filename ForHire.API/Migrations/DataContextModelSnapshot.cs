@@ -128,6 +128,9 @@ namespace ForHire.API.Migrations
                     b.Property<string>("Type")
                         .HasColumnType("TEXT");
 
+                    b.Property<bool>("isExpanded")
+                        .HasColumnType("INTEGER");
+
                     b.Property<bool>("isHidden")
                         .HasColumnType("INTEGER");
 

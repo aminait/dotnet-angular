@@ -15,44 +15,62 @@
       <h5 class="card-title">Search results:</h5>
       <p class="card-text">count results, sort by, recommended...</p>
       <p class="card-text">add search here</p>
-      <div class="card tl shadow">
+      <div *ngFor="let job of jobs; let i = index" class="card tl shadow mb-2">
         <div class="row no-gutters">
           <div class="col-md-1">
             <img src="..." class="card-img" alt="..." />
           </div>
           <div class="col-md-8">
             <div class="card-body tl">
-              <h5 class="card-title"><a href="#">JOB TITLE</a></h5>
-              <h6 class="card-subtitle mb-2 text-muted">Company name</h6>
-              <p class="card-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              </p>
-            </div>
-          </div>
-        </div>
-        <!-- add footer options -->
-        <div class="card-footer border-secondary text-right">
-          <a href="#"><i class="fa fa-thumb-tack mr-2"></i>Save</a>
-          <a href="#"><i class="fa fa-times-circle-o ml-4 mr-2"></i>Hide</a>
-        </div>
-      </div>
-    </div>
+              <h5 class="card-title">
+                <a href="#">{{ job.title }}</a>
+              </h5>
+              <h6 class="card-subtitle mb-2">
+                <a
+                  (click)="getCompanyByJobId(job, job.id, template)"
+                  class="text-muted"
+                  >{{ job.companyName }}</a
+                >
+              </h6>
+              <div
+                class="card-text container-overflow"
+                [class.show]="job.isExpanded"
+              >
+                <p>
+                  {{ job.description }}
+                </p>
+                <p>
+                  {{ job.description }}
+                </p>
 
-    <div class="card-body tl">
-      <div class="card tl shadow">
-        <div class="row no-gutters">
-          <div class="col-md-1">
-            <img src="..." class="card-img" alt="..." />
-          </div>
-          <div class="col-md-8">
-            <div class="card-body tl">
-              <h5 class="card-title"><a href="#">JOB TITLE</a></h5>
-              <h6 class="card-subtitle mb-2 text-muted">Company name</h6>
-              <p class="card-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              </p>
+                <p class="card-text text-muted alignRight">
+                  {{ job.timePosted }}
+                </p>
+                <ul *ngIf="jobDetails">
+                  <li>{{ jobDetails?.type }}</li>
+                  <li>{{ jobDetails?.seniority }}</li>
+                  <li>{{ jobDetails?.city }}</li>
+                  <li>{{ jobDetails?.country }}</li>
+                </ul>
+              </div>
+              <button
+                class="btn btn-outline-secondary mr-2"
+                (click)="getJobDetails(job)"
+              >
+                {{ job.isExpanded ? "Show less" : "Show More" }}
+              </button>
+              <!-- <button id="&quot;custom-modal-&quot;+&quot;{{ i }}&quot;">
+                Apply
+              </button> -->
+              <!-- <button
+                class="btn btn-outline-primary mr-2"
+                data-toggle="modal"
+                data-target="#exampleModal"
+                (click)="getJobDetails(job, job.id, template)"
+              >
+                See More
+              </button> -->
+              <button class="btn btn-outline-success">Apply</button>
             </div>
           </div>
         </div>
@@ -65,3 +83,82 @@
     </div>
   </div>
 </div>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">{{ jobDetails?.title }}</h4>
+    <div class="modal-body">
+      <ul>
+        <li>
+          {{ companyDetails?.companyName }}
+        </li>
+        <li>
+          {{ companyDetails?.tagline }}
+        </li>
+        <li>{{ companyDetails?.companySize }} EMPLOYEES</li>
+        <li>
+          {{ companyDetails?.description }}
+        </li>
+        <li>
+          {{ companyDetails?.field }}
+        </li>
+        <li>{{ companyDetails?.city }}, {{ companyDetails?.country }}</li>
+      </ul>
+    </div>
+    <button
+      type="button"
+      class="close pull-right"
+      aria-label="Close"
+      (click)="modalRef.hide()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">This is a modal.</div>
+</ng-template>
+
+<!-- <div
+  *ngIf="showModal"
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Job Details</h5>
+        <button
+          type="button"
+          class="close"
+          onclick="hideModal()"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-lg-3 col-12 border">
+            <h5>{{ jobDetails?.title }}</h5>
+          </div>
+          <div class="col-lg-3 col-12 border">
+            <h5>{{ jobDetails?.description }}</h5>
+          </div>
+          <div class="col-lg-3 col-12 border">
+            <h5>{{ jobDetails?.seniority }}</h5>
+          </div>
+          <div class="col-lg-3 col-12 border">
+            <h5>{{ jobDetails?.city }}</h5>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="hideModal()">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div> -->

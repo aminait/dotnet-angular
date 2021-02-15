@@ -9,7 +9,7 @@ namespace ForHire.API.DTOs
         public string PhotoUrl { get; set; }
         public string CompanyName { get; set; }
         public string Tagline { get; set; }
-        public int CompanySize { get; set; }
+        public string CompanySize { get; set; }
         public string Description { get; set; }
         public string Field { get; set; }
         public string City { get; set; }

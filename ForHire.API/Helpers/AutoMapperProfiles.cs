@@ -44,7 +44,11 @@ namespace ForHire.API.Helpers
                 );
             CreateMap<JobDetailsDto, JobListing>();
             CreateMap<CompanyDetailsDto, Company>();
-            CreateMap<Company, CompanyDetailsDto>();
+            CreateMap<Company, CompanyDetailsDto>()
+                .ForMember(
+                        dest => dest.CompanySize, opt =>
+                        opt.MapFrom(src => src.CompanySize.CalculateSizeRange())
+                    );
 
             CreateMap<SocialProfilesDto, SocialProfile>();
             CreateMap<SocialProfile, SocialProfilesDto>();
