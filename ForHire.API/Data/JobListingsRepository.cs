@@ -29,8 +29,6 @@ namespace ForHire.API.Data
             return await _context.SaveChangesAsync() > 0;
         }
 
-
-
         public async Task<IEnumerable<JobListing>> GetJobListings()
         {
             var listings = await _context.JobListings.ToListAsync();
@@ -44,15 +42,30 @@ namespace ForHire.API.Data
             return listing;
         }
 
-        public async Task<Company> GetCompany(int id)
+        public async Task<List<Tag>> GetJobListingTags(int id)
         {
-            var listing = (from jl in _context.JobListings
-                           where jl.Id == id
-                           select jl).FirstOrDefault();
+            // select from tags where joblistingid == id
+            var tags = await _context.Tags.Where(tag => tag.JobListingId == id).ToListAsync();
+            return tags;
+        }
 
-            var company = await _context.Companies.FirstOrDefaultAsync(c => c.CompanyId == listing.CompanyId);
+        public async Task<IEnumerable<Company>> GetCompanies()
+        {
+            var companies = await _context.Companies.ToListAsync();
+            return companies;
+        }
 
+        public async Task<Company> GetCompany(int companyId)
+        {
+
+            var company = await _context.Companies.FirstOrDefaultAsync(c => c.CompanyId == companyId);
             return company;
+        }
+
+        public async Task<List<SocialProfile>> GetCompanySocialProfiles(int companyId)
+        {
+            var profiles = await _context.SocialProfiles.Where(profile => profile.CompanyId == companyId).ToListAsync();
+            return profiles;
         }
     }
 }

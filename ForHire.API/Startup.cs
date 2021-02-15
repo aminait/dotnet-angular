@@ -48,8 +48,10 @@ namespace ForHire.API
                     opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
                 });
             services.AddCors();
-            services.AddScoped<IDataRepository, DataRepository>();
             services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<IDataRepository, DataRepository>();
+            services.AddScoped<IJobListingsRepository, JobListingsRepository>();
+
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>

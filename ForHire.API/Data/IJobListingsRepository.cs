@@ -10,6 +10,9 @@ namespace ForHire.API.Data
         Task<bool> SaveAll();
         Task<IEnumerable<JobListing>> GetJobListings();
         Task<JobListing> GetJobListing(int id);
-        Task<Company> GetCompany(int id);
+        Task<List<Tag>> GetJobListingTags(int id);
+        Task<IEnumerable<Company>> GetCompanies();
+        Task<Company> GetCompany(int companyId);
+        Task<List<SocialProfile>> GetCompanySocialProfiles(int companyId);
     }
 }

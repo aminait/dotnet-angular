@@ -11,5 +11,7 @@ namespace ForHire.API.Data
         Task<bool> SaveAll();
         Task<IEnumerable<User>> GetUsers();
         Task<User> GetUser(int id);
+
+        Task<int> DeleteUser(int? id);
     }
 }

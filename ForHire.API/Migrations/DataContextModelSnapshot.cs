@@ -138,6 +138,66 @@ namespace ForHire.API.Migrations
                     b.ToTable("JobListings");
                 });
 
+            modelBuilder.Entity("ForHire.API.Models.Keyword", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("KeywordName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("UserId1")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("UserId1");
+
+                    b.ToTable("Keyword");
+                });
+
+            modelBuilder.Entity("ForHire.API.Models.ResumeSection", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Content")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("DateFrom")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("DateTo")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("UserId1")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("UserId1");
+
+                    b.ToTable("ResumeSection");
+                });
+
             modelBuilder.Entity("ForHire.API.Models.SocialProfile", b =>
                 {
                     b.Property<int>("Id")
@@ -153,9 +213,14 @@ namespace ForHire.API.Migrations
                     b.Property<string>("Type")
                         .HasColumnType("TEXT");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CompanyId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("SocialProfiles");
                 });
@@ -184,6 +249,9 @@ namespace ForHire.API.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Achievements")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("City")
                         .HasColumnType("TEXT");
@@ -224,8 +292,8 @@ namespace ForHire.API.Migrations
                     b.Property<string>("PhotoUrl")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Skills")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("YearsOfExperience")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -265,6 +333,28 @@ namespace ForHire.API.Migrations
                     b.Navigation("Company");
                 });
 
+            modelBuilder.Entity("ForHire.API.Models.Keyword", b =>
+                {
+                    b.HasOne("ForHire.API.Models.User", null)
+                        .WithMany("RolesOfInterest")
+                        .HasForeignKey("UserId");
+
+                    b.HasOne("ForHire.API.Models.User", null)
+                        .WithMany("Skills")
+                        .HasForeignKey("UserId1");
+                });
+
+            modelBuilder.Entity("ForHire.API.Models.ResumeSection", b =>
+                {
+                    b.HasOne("ForHire.API.Models.User", null)
+                        .WithMany("Education")
+                        .HasForeignKey("UserId");
+
+                    b.HasOne("ForHire.API.Models.User", null)
+                        .WithMany("Experience")
+                        .HasForeignKey("UserId1");
+                });
+
             modelBuilder.Entity("ForHire.API.Models.SocialProfile", b =>
                 {
                     b.HasOne("ForHire.API.Models.Company", "Company")
@@ -272,6 +362,10 @@ namespace ForHire.API.Migrations
                         .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("ForHire.API.Models.User", null)
+                        .WithMany("SocialProfiles")
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Company");
                 });
@@ -301,6 +395,19 @@ namespace ForHire.API.Migrations
                     b.Navigation("JobApplications");
 
                     b.Navigation("Tags");
+                });
+
+            modelBuilder.Entity("ForHire.API.Models.User", b =>
+                {
+                    b.Navigation("Education");
+
+                    b.Navigation("Experience");
+
+                    b.Navigation("RolesOfInterest");
+
+                    b.Navigation("Skills");
+
+                    b.Navigation("SocialProfiles");
                 });
 #pragma warning restore 612, 618
         }

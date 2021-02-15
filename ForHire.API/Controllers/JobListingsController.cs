@@ -7,53 +7,65 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ForHire.API.Data;
 using ForHire.API.DTOs;
+using ForHire.API.Models;
 
 namespace ForHire.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/jobs")]
     [ApiController]
     public class JobListingsController : ControllerBase
     {
-        private IDataRepository _repo;
+        private IJobListingsRepository _repo;
         private IMapper _mapper;
 
-        public JobListingsController(IDataRepository repo, IMapper mapper)
+        public JobListingsController(IJobListingsRepository repo, IMapper mapper)
         {
             _repo = repo;
             _mapper = mapper;
         }
 
-        // [HttpGet]
-        // public async Task<IActionResult> GetUsers()
-        // {
-        //     var users = await _repo.GetUsers();
-        //     var usersToReturn = _mapper.Map<IEnumerable<UserForListDto>>(users);
-        //     return Ok(usersToReturn);
-        // }
 
-        // [HttpGet("{id}")]
-        // public async Task<IActionResult> GetUser(int id)
-        // {
-        //     var user = await _repo.GetUser(id);
-        //     var userToReturn = _mapper.Map<UserProfileDto>(user);
-        //     return Ok(userToReturn);
-        // }
+        // GET http://localhost:5000/api/jobs/
 
-        // [HttpPut("{id}")]
-        // public async Task<IActionResult> UpdateUser(int id, UserUpdateProfileDto userUpdateProfile)
-        // {
-        //     if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-        //     {
-        //         return Unauthorized();
-        //     }
-        //     var userFromRepo = await _repo.GetUser(id);
-        //     _mapper.Map(userUpdateProfile, userFromRepo);
-        //     if (await _repo.SaveAll())
-        //     {
-        //         return NoContent();
-        //     }
-        //     throw new Exception($"Updating user {id} failed on save");
-        // }
+        [HttpGet]
+        public async Task<IActionResult> GetJobPreviews()
+        {
+            var listings = await _repo.GetJobListings();
+            var jobsPreviewDto = _mapper.Map<IEnumerable<JobPreviewDto>>(listings);
+            return Ok(jobsPreviewDto);
+        }
+
+        // GET http://localhost:5000/api/jobs/{id}
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetJobPreview(int id)
+        {
+            var listing = await _repo.GetJobListing(id);
+            var jobPreviewDto = _mapper.Map<JobPreviewDto>(listing);
+            return Ok(jobPreviewDto);
+        }
+
+        // GET http://localhost:5000/api/jobs/{id}/details 
+        [HttpGet("{id}/details")]
+        public async Task<IActionResult> GetJobDetails(int id)
+        {
+            var job = await _repo.GetJobListing(id);
+            var jobDetailsDto = _mapper.Map<JobDetailsDto>(job);
+            return Ok(jobDetailsDto);
+        }
+
+        // GET http://localhost:5000/api/jobs/{id}/tags
+        [HttpGet("{id}/tags")]
+        public async Task<IActionResult> GetJobTags(int id)
+        {
+            var tagsFromRepo = await _repo.GetJobListingTags(id);
+            var tags = new List<string>();
+            foreach (var tag in tagsFromRepo)
+            {
+                tags.Add(tag.TagName);
+            }
+
+            return Ok(tags);
+        }
     }
 
 }

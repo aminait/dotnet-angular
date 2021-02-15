@@ -1,5 +1,7 @@
 using System;
 using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ForHire.API.Helpers
 {
@@ -12,24 +14,45 @@ namespace ForHire.API.Helpers
             response.Headers.Add("Access-Control-Allow-Origin", "*");
         }
 
-        public static int CalculateAge(this DateTime theDateTime)
+        public static string CalculateTimeElapsed(this DateTime theDateTime)
         {
-            var age = DateTime.Today.Year - theDateTime.Year;
-            if (theDateTime.AddYears(age) > DateTime.Today)
-            {
-                age--;
-            }
-            return age;
+            TimeSpan ts = DateTime.Now.ToUniversalTime().Subtract(theDateTime);
+            int intDays = ts.Days;
+            int intHours = ts.Hours;
+            int intMinutes = ts.Minutes;
+            int intSeconds = ts.Seconds;
+
+            if (intDays > 0)
+                return string.Format("{0}d", intDays);
+
+            if (intHours > 0)
+                return string.Format("{0}h", intHours);
+
+            if (intMinutes > 0)
+                return string.Format("{0}m", intMinutes);
+
+            if (intSeconds > 0)
+                return string.Format("{0}s", intSeconds);
+            return "0s";
         }
 
-        // public static int CalculateDatePosted(this DateTime theDateTime)
-        // {
-        //     var datePosted = DateTime.Now - theDateTime;
-        //     if (theDateTime.AddYears(age) > DateTime.Today)
-        //     {
-        //         age--;
-        //     }
-        //     return age;
-        // }
+        public static string CalculateSizeRange(this int companySize)
+        {
+            if (companySize >= 1 && companySize <= 10)
+            {
+                return "1-10";
+            }
+            if (companySize >= 10 && companySize <= 50)
+            {
+                return "11-50";
+            }
+            if (companySize >= 50 && companySize <= 200)
+            {
+                return "51-200";
+            }
+            return "200+";
+        }
+
+
     }
 }

@@ -12,7 +12,7 @@ using ForHire.API.Models;
 
 namespace ForHire.API.Controllers
 {
-    [Authorize]
+    // [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
@@ -26,36 +26,54 @@ namespace ForHire.API.Controllers
             _mapper = mapper;
         }
 
+        // GET http://localhost:5000/api/users/
+
         [HttpGet]
         public async Task<IActionResult> GetUsers()
         {
             var users = await _repo.GetUsers();
-            var usersToReturn = _mapper.Map<IEnumerable<User>>(users);
+            var usersToReturn = _mapper.Map<IEnumerable<UserListDto>>(users);
             return Ok(usersToReturn);
         }
+
+        // GET http://localhost:5000/api/users/{id}
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUser(int id)
         {
             var user = await _repo.GetUser(id);
-            var userToReturn = _mapper.Map<UserProfileDto>(user);
+            var userToReturn = _mapper.Map<UserListDto>(user);
             return Ok(userToReturn);
         }
 
+        // PUT http://localhost:5000/api/users/{id}/profile
+
+        [HttpGet("{id}/profile")]
+        public async Task<IActionResult> GetUserProfile(int id)
+        {
+            var user = await _repo.GetUser(id);
+            var profile = _mapper.Map<UserProfileDto>(user);
+            return Ok(profile);
+        }
+
+        // PUT http://localhost:5000/api/users/{id}/
+
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateUser(int id, UserUpdateProfileDto userUpdateProfile)
+        public async Task<IActionResult> UpdateUser(int id, UserProfileDto userProfileUpdate)
         {
             if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
             {
                 return Unauthorized();
             }
             var userFromRepo = await _repo.GetUser(id);
-            _mapper.Map(userUpdateProfile, userFromRepo);
+            _mapper.Map(userProfileUpdate, userFromRepo);
             if (await _repo.SaveAll())
             {
                 return NoContent();
             }
             throw new Exception($"Updating user {id} failed on save");
+
         }
+
     }
 }

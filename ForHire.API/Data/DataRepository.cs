@@ -41,17 +41,31 @@ namespace ForHire.API.Data
             return user;
         }
 
-        public async Task<IEnumerable<JobListing>> GetJobListings()
+        public async Task<int> DeleteUser(int? id)
         {
-            var listings = await _context.JobListings.ToListAsync();
-            return listings;
+            int result = 0;
+
+            if (_context != null)
+            {
+                //Find the post for specific post id
+                var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
+
+                if (user != null)
+                {
+                    //Delete that post
+                    _context.Users.Remove(user);
+
+                    //Commit the transaction
+                    result = await _context.SaveChangesAsync();
+                }
+                return result;
+            }
+
+            return result;
         }
 
-        public async Task<JobListing> GetJobListing(int id)
-        {
-            var listing = await _context.JobListings.FirstOrDefaultAsync(jl => jl.Id == id);
 
-            return listing;
-        }
+
+
     }
 }
