@@ -42,6 +42,13 @@ namespace ForHire.API.Data
             return listing;
         }
 
+        public async Task<IEnumerable<JobListing>> GetSavedJobListings()
+        {
+            var savedJobListings = await _context.JobListings.Where(jl => jl.IsSaved).ToListAsync();
+            return savedJobListings;
+        }
+
+
         public async Task<List<Tag>> GetJobListingTags(int id)
         {
             // select from tags where joblistingid == id

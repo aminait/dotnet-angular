@@ -1,3 +1,53 @@
-<p>
-  jobs-saved works!
-</p>
+<div class="container-fluid mt-4">
+  <h3 class="mb-4 text-center">Opportunities:</h3>
+  <div class="card text-center w-50 mx-auto shadow">
+    <div class="card-header">
+      <ul class="nav nav-tabs card-header-tabs">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/jobs">Browse All</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="/saved">Saved</a>
+        </li>
+      </ul>
+    </div>
+    <div class="card-body">
+      <div *ngIf="savedJobs.length == 0">No Saved Jobs</div>
+      <div *ngFor="let savedJob of savedJobs" class="card tl shadow mb-2">
+        <div class="row no-gutters">
+          <div class="col-md-1">
+            <img src="..." class="card-img" alt="..." />
+          </div>
+          <div class="col-md-8">
+            <div class="card-body tl">
+              <h5 class="card-title">
+                <a href="#">{{ savedJob.title }}</a>
+              </h5>
+              <h6 class="card-subtitle mb-2">
+                <a class="text-muted">{{ savedJob.companyName }}</a>
+              </h6>
+              <div class="card-text">
+                <div *ngIf="savedJob.isRecruiting">
+                  <p>Hurry! The company is still recruiting</p>
+                  <button class="btn btn-outline-success">Apply</button>
+                </div>
+                <div *ngIf="!savedJob.isRecruiting">
+                  <p>Oh no, you missed the deadline</p>
+                  <button class="btn btn-outline-secondary" disabled>
+                    Apply
+                  </button>
+                </div>
+                <button
+                  class="btn btn-outline"
+                  (click)="removeSavedJob(savedJob)"
+                >
+                  <i class="fa fa-times-circle-o mr-2"></i>Remove
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,10 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+  TemplateRef,
+} from '@angular/core';
 import { JobPreview } from 'src/app/_models/job-preview';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { JobsService } from 'src/app/_services/jobs.service';
@@ -6,6 +12,7 @@ import { JobDetails } from 'src/app/_models/job-details';
 import { CompanyDetails } from 'src/app/_models/company-details';
 
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-jobs-list',
@@ -13,12 +20,15 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
   styleUrls: ['./jobs-list.component.scss'],
 })
 export class JobsListComponent implements OnInit {
+  // @Output() savedJobChild = new EventEmitter();
+
   jobs: JobPreview[];
   selectedJob: any;
   showModal: boolean = false;
   jobDetails: JobDetails | any;
   companyDetails: CompanyDetails | any;
   modalRef: BsModalRef | any;
+  updatedJob: JobDetails | any;
   // details: JobDetails | null;
   // expandedText: string;
   // bsModalRef: BsModalRef;
@@ -26,7 +36,8 @@ export class JobsListComponent implements OnInit {
   constructor(
     private jobsService: JobsService,
     private alertify: AlertifyService,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    private router: RouterModule
   ) {
     this.jobs = [];
   }
@@ -47,14 +58,14 @@ export class JobsListComponent implements OnInit {
   }
 
   getJobDetails(job: any) {
-    console.log('INSIDE JOB DETAILS, before expanded val: ', job.isExpanded);
+    // console.log('INSIDE JOB DETAILS, before expanded val: ', job.isExpanded);
     job.isExpanded = !job.isExpanded;
     // isExpanded = !isExpanded;
-    console.log('INSIDE JOB DETAILS, after expanded val: ', job.isExpanded);
+    // console.log('INSIDE JOB DETAILS, after expanded val: ', job.isExpanded);
     this.jobsService.getJobDetails(job.id).subscribe(
       (details: JobDetails) => {
         this.jobDetails = details;
-        console.log('Associated details: ', this.jobDetails.seniority);
+        // console.log('Associated details: ', this.jobDetails.seniority);
       },
       (error) => {
         this.alertify.error(error);
@@ -81,6 +92,29 @@ export class JobsListComponent implements OnInit {
     );
     this.modalRef = this.modalService.show(template);
   }
+  showApplicationModal(jobId: number) {}
+
+  toggleSaved(job: any) {
+    console.log('inside saved: ', job.isSaved);
+    // loading API is slow, so trigger appearance change
+    job.isSaved = !job.isSaved;
+    this.jobsService
+      .toggleSavedJobListing(job.id)
+      .subscribe((updates: JobDetails) => {
+        this.updatedJob = updates;
+      });
+    if (job.isSaved) {
+      this.alertify.success('Adding ' + job.title + ' to Saved Jobs');
+    } else {
+      this.alertify.warning(job.title + ' has been removed from Saved Jobs');
+    }
+    // this.savedJobChild.emit(this.updatedJob);
+  }
+  // toggleHidden(job: any) {
+  //   console.log('inside hidden: ', job.isHidden);
+  //   job.isHidden = !job.isHidden;
+  //   console.log('inside hidden after: ', job.isHidden);
+  // }
 
   //  openModalWithComponent() {
   //   await this.delay(2000);

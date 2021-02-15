@@ -27,6 +27,14 @@ export class JobsService {
     return this.http.get<JobDetails>(this.baseUrl + id + '/details');
   }
 
+  toggleSavedJobListing(id: number): Observable<JobDetails> {
+    return this.http.put<JobDetails>(this.baseUrl + id + '/save', id);
+  }
+
+  getSavedJobs(): Observable<JobPreview[]> {
+    return this.http.get<JobPreview[]>(this.baseUrl + 'saved');
+  }
+
   getJobTags(id: number): Observable<Tag[]> {
     return this.http.get<Tag[]>(this.baseUrl + id + '/tags');
   }

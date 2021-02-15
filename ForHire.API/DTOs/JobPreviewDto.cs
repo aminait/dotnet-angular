@@ -10,6 +10,8 @@ namespace ForHire.API.DTOs
         public string Description { get; set; }
         public string TimePosted { get; set; }
         public bool IsRecruiting { get; set; }
+        public bool IsHidden { get; set; }
+        public bool IsSaved { get; set; }
         public bool isExpanded { get; set; }
     }
 }

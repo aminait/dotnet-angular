@@ -7,7 +7,7 @@
           <a class="nav-link active" href="#">Browse All</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Saved</a>
+          <a class="nav-link" routerLink="/saved">Saved</a>
         </li>
       </ul>
     </div>
@@ -36,10 +36,7 @@
                 class="card-text container-overflow"
                 [class.show]="job.isExpanded"
               >
-                <p>
-                  {{ job.description }}
-                </p>
-                <p>
+                <p [innerHTML]="job.description">
                   {{ job.description }}
                 </p>
 
@@ -70,14 +67,25 @@
               >
                 See More
               </button> -->
-              <button class="btn btn-outline-success">Apply</button>
+              <button
+                class="btn btn-outline-success"
+                (click)="showApplicationModal(job.id)"
+              >
+                Apply
+              </button>
             </div>
           </div>
         </div>
         <!-- add footer options -->
         <div class="card-footer border-secondary text-right">
-          <a href="#"><i class="fa fa-thumb-tack mr-2"></i>Save</a>
-          <a href="#"><i class="fa fa-times-circle-o ml-4 mr-2"></i>Hide</a>
+          <a *ngIf="!job.isSaved" (click)="toggleSaved(job)"
+            ><i class="fa fa-thumb-tack mr-2"></i>Save</a
+          >
+          <a *ngIf="job.isSaved" (click)="toggleSaved(job)" class="text-success"
+            ><i class="fa fa-times-circle-o mr-2"></i>Unsave</a
+          >
+          <!-- <a (click)="toggleHidden(job)" -->
+          <a><i class="fa fa-trash ml-4 mr-2"></i>Hide</a>
         </div>
       </div>
     </div>

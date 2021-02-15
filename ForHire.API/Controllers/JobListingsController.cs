@@ -76,6 +76,28 @@ namespace ForHire.API.Controllers
             var companyDetailsDto = _mapper.Map<CompanyDetailsDto>(company);
             return Ok(companyDetailsDto);
         }
+
+        // PUT http://localhost:5000/api/jobs/{id}/save
+        [HttpPut("{id}/save")]
+        public async Task<IActionResult> ToggleSavedJobListing(int id)
+        {
+            var job = await _repo.GetJobListing(id);
+            job.IsSaved = !job.IsSaved;
+            await _repo.SaveAll();
+            var jobDetailsDto = _mapper.Map<JobDetailsDto>(job);
+            return Ok(jobDetailsDto);
+        }
+
+        // GE http://localhost:5000/api/jobs/saved
+        [HttpGet("saved")]
+        public async Task<IActionResult> GetSavedJobListings()
+        {
+            var savedJobListings = await _repo.GetSavedJobListings();
+            var savedJobListingsDto = _mapper.Map<IEnumerable<JobPreviewDto>>(savedJobListings);
+            return Ok(savedJobListingsDto);
+        }
+
+        // POST http://localhost:5000/api/jobs/{id}/apply
     }
 
 }

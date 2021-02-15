@@ -1,0 +1,20 @@
+<p>application-modal works!</p>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Application for job.title</h4>
+    <div class="modal-body">
+      <p>I should get a couple forms here</p>
+      <p>Upload resume here</p>
+    </div>
+    <button
+      type="button"
+      class="close pull-right"
+      aria-label="Close"
+      (click)="modalRef.hide()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">This is a modal.</div>
+</ng-template>

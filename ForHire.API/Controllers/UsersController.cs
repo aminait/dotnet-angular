@@ -75,5 +75,12 @@ namespace ForHire.API.Controllers
 
         }
 
+        // Get http://localhost:5000/api/users/{id}/applications
+        // get all applications by user
+
+        // get application by id
+
+        // 
+
     }
 }

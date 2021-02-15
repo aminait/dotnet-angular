@@ -8,6 +8,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { NotifsComponent } from './notifs/notifs.component';
 import { SignupComponent } from './signup/signup.component';
 import { AuthGuard } from './_guards/auth.guard';
+import { JobsSavedComponent } from './jobs/jobs-saved/jobs-saved.component';
 
 export const appRoutes: Routes = [
   {
@@ -29,6 +30,10 @@ export const appRoutes: Routes = [
   {
     path: 'jobs',
     component: JobsListComponent,
+  },
+  {
+    path: 'saved',
+    component: JobsSavedComponent,
   },
   {
     path: '',

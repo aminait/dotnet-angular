@@ -5,5 +5,7 @@ export interface JobPreview {
   description: string;
   timePosted: string;
   isRecruiting: boolean;
+  isSaved: boolean;
+  isHidden: boolean;
   isExpanded: boolean;
 }
