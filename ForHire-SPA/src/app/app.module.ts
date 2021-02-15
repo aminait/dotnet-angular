@@ -11,7 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './_services/auth.service';
-import { ErrorInterceptorProvider } from './_services/error.interceptor';
+// import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { JobsListComponent } from './jobs/jobs-list/jobs-list.component';
 import { MessagesComponent } from './messages/messages.component';
 import { AppliedJobsComponent } from './applied-jobs/applied-jobs.component';
@@ -44,7 +44,11 @@ import { HomeUserComponent } from './home-user/home-user.component';
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
   ],
-  providers: [AuthService, ErrorInterceptorProvider, AlertifyService],
+  providers: [
+    AuthService,
+    // ErrorInterceptorProvider,
+    AlertifyService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

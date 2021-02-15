@@ -11,7 +11,7 @@ namespace ForHire.API.Models
         public int CompanySize { get; set; }
         public string Description { get; set; }
         public string Field { get; set; }
-        public ICollection<SocialProfile> SocialProfiles { get; set; }
+        public virtual ICollection<SocialProfile> SocialProfiles { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
 

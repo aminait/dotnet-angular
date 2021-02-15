@@ -16,30 +16,167 @@ namespace ForHire.API.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "5.0.3");
 
+            modelBuilder.Entity("ForHire.API.Models.Company", b =>
+                {
+                    b.Property<int>("CompanyId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("City")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CompanyName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("CompanySize")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Field")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PhotoUrl")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Tagline")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("CompanyId");
+
+                    b.ToTable("Companies");
+                });
+
+            modelBuilder.Entity("ForHire.API.Models.Industry", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("JobListingId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("JobListingId");
+
+                    b.ToTable("Industries");
+                });
+
+            modelBuilder.Entity("ForHire.API.Models.JobApplication", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("AppId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("DateApplied")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("JobApplications");
+                });
+
             modelBuilder.Entity("ForHire.API.Models.JobListing", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("CompanyName")
+                    b.Property<string>("City")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("Created")
+                    b.Property<int>("CompanyId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("DatePosted")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Details")
+                    b.Property<bool>("HasApplied")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsRecruiting")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsSaved")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Seniority")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Title")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Type")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("isHidden")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("CompanyId");
+
                     b.ToTable("JobListings");
+                });
+
+            modelBuilder.Entity("ForHire.API.Models.SocialProfile", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("CompanyId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Link")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
+
+                    b.ToTable("SocialProfiles");
+                });
+
+            modelBuilder.Entity("ForHire.API.Models.Tag", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("JobListingId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("TagName")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("JobListingId");
+
+                    b.ToTable("Tags");
                 });
 
             modelBuilder.Entity("ForHire.API.Models.User", b =>
@@ -93,6 +230,77 @@ namespace ForHire.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("ForHire.API.Models.Industry", b =>
+                {
+                    b.HasOne("ForHire.API.Models.JobListing", "JobListing")
+                        .WithMany("Industries")
+                        .HasForeignKey("JobListingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("JobListing");
+                });
+
+            modelBuilder.Entity("ForHire.API.Models.JobApplication", b =>
+                {
+                    b.HasOne("ForHire.API.Models.JobListing", "JobListing")
+                        .WithMany("JobApplications")
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("JobListing");
+                });
+
+            modelBuilder.Entity("ForHire.API.Models.JobListing", b =>
+                {
+                    b.HasOne("ForHire.API.Models.Company", "Company")
+                        .WithMany("JobListings")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Company");
+                });
+
+            modelBuilder.Entity("ForHire.API.Models.SocialProfile", b =>
+                {
+                    b.HasOne("ForHire.API.Models.Company", "Company")
+                        .WithMany("SocialProfiles")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Company");
+                });
+
+            modelBuilder.Entity("ForHire.API.Models.Tag", b =>
+                {
+                    b.HasOne("ForHire.API.Models.JobListing", "JobListing")
+                        .WithMany("Tags")
+                        .HasForeignKey("JobListingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("JobListing");
+                });
+
+            modelBuilder.Entity("ForHire.API.Models.Company", b =>
+                {
+                    b.Navigation("JobListings");
+
+                    b.Navigation("SocialProfiles");
+                });
+
+            modelBuilder.Entity("ForHire.API.Models.JobListing", b =>
+                {
+                    b.Navigation("Industries");
+
+                    b.Navigation("JobApplications");
+
+                    b.Navigation("Tags");
                 });
 #pragma warning restore 612, 618
         }

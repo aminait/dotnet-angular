@@ -44,20 +44,20 @@ namespace ForHire.API.Data
             }
         }
 
-        // public static void SeedCompanies(DataContext context)
-        // {
-        //     if (!context.Companies.Any())
-        //     {
-        //         var companiesData = System.IO.File.ReadAllText("Data/companies.json");
-        //         var companies = JsonConvert.DeserializeObject<List<Companies>>(companiesData);
-        //         foreach (var company in companies)
-        //         {
-        //             context.Companies.Add(company);
-        //         }
+        public static void SeedCompanies(DataContext context)
+        {
+            if (!context.Companies.Any())
+            {
+                var companiesData = System.IO.File.ReadAllText("Data/companies.json");
+                var companies = JsonConvert.DeserializeObject<List<Company>>(companiesData);
+                foreach (var company in companies)
+                {
+                    context.Companies.Add(company);
+                }
 
-        //         context.SaveChanges();
-        //     }
-        // }
+                context.SaveChanges();
+            }
+        }
 
         private static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {

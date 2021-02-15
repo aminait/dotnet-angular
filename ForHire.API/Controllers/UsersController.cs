@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ForHire.API.Data;
 using ForHire.API.DTOs;
+using ForHire.API.Models;
+
 
 namespace ForHire.API.Controllers
 {
@@ -24,13 +26,13 @@ namespace ForHire.API.Controllers
             _mapper = mapper;
         }
 
-        // [HttpGet]
-        // public async Task<IActionResult> GetUsers()
-        // {
-        //     var users = await _repo.GetUsers();
-        //     var usersToReturn = _mapper.Map<IEnumerable<UserForListDto>>(users);
-        //     return Ok(usersToReturn);
-        // }
+        [HttpGet]
+        public async Task<IActionResult> GetUsers()
+        {
+            var users = await _repo.GetUsers();
+            var usersToReturn = _mapper.Map<IEnumerable<User>>(users);
+            return Ok(usersToReturn);
+        }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUser(int id)

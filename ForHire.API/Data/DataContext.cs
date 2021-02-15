@@ -11,6 +11,10 @@ namespace ForHire.API.Data
         public DbSet<User> Users { get; set; }
         public DbSet<JobListing> JobListings { get; set; }
         public DbSet<Company> Companies { get; set; }
+        public DbSet<JobApplication> JobApplications { get; set; }
+        public DbSet<Tag> Tags { get; set; }
+        public DbSet<Industry> Industries { get; set; }
+        public DbSet<SocialProfile> SocialProfiles { get; set; }
 
     }
 }

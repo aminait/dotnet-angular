@@ -1,31 +1,41 @@
 [
     {
         "Title": "Receptionist",
-        "CompanyName": "Dunder Mifflin",
         "Description": "We are looking for people from all backgrounds but these requirements are essential",
         "Type": "Full-time",
         "Seniority": "Entry-level",
-        "Industries": ["Computer Software", "Information Technology", "Public Relations"],
+        "Industries": [
+            {
+                "Name": "Hospitality"
+            }
+            ],
         "Tags": [
-                    { 
-                        "TagName": "Receptionist"
-                    },
-                    { 
-                        "TagName": "PR"
-                    }
-                ],
+            { 
+                "TagName": "Receptionist"
+            },
+            { 
+                "TagName": "PR"
+            }
+            ],
         "City": "Seattle",
         "Country": "USA",
         "IsRecruiting": true,
-        "DatePosted": "2021-01-15"
+        "DatePosted": "2021-01-15",
+        "CompanyId": 1
     },
     {
         "Title": "Full-stack Developer",
-        "CompanyName": "Mobile Industries",
         "Description": "7000 years of experience is necessary and this is just filler text",
         "Type": "Full-time",
         "Seniority": "Mid-level",
-        "Industries": ["Computer Software", "Information Technology"],
+        "Industries": [
+            {
+                "Name": "Computer Software"
+            },
+            {
+                "Name": "Information Technology"
+            }
+            ],
         "Tags": [
             { 
                 "TagName": "React"
@@ -40,15 +50,22 @@
         "City": "Istanbul",
         "Country": "Turkey",
         "IsRecruiting": true,
-        "DatePosted": "2021-01-29"
+        "DatePosted": "2021-01-29",
+        "CompanyId": 2
     },
     {
         "Title": "Receptionist",
-        "CompanyName": "Dunder Mifflin",
         "Description": "We are looking for people from all backgrounds but these requirements are essential",
         "Type": "Full-time",
         "Seniority": "Entry-level",
-        "Industries": ["Computer Software", "Information Technology", "Public Relations"],
+        "Industries": [
+            {
+                "Name": "Public Relations"
+            },
+            {
+                "Name": "Information Technology"
+            }
+        ],
         "Tags": [
             { 
                 "TagName": "SAMPLE TAG"
@@ -57,23 +74,28 @@
         "City": "Seattle",
         "Country": "USA",
         "IsRecruiting": true,
-        "DatePosted": "2021-01-15"
+        "DatePosted": "2021-01-15",
+        "CompanyId": 1
     },
     {
         "Title": "Receptionist False",
-        "CompanyName": "Dunder Mifflin",
         "Description": "We are looking for people from all backgrounds but these requirements are essential",
         "Type": "Full-time",
         "Seniority": "Entry-level",
-        "Industries": ["Computer Software", "Information Technology", "Public Relations"],
+        "Industries": [
+            {
+                "Name": "Business Administration"
+            }
+        ],
         "Tags": [
-                {
-                    "TagName": "FALSE"
-                }
+            {
+                "TagName": "FALSE"
+            }
             ],
         "City": "Seattle",
         "Country": "USA",
         "IsRecruiting": false,
-        "DatePosted": "2021-01-15"
+        "DatePosted": "2021-01-15",
+        "CompanyId": 1
     }
 ]

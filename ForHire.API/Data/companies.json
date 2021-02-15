@@ -6,7 +6,21 @@
         "CompanySize": 150,
         "Description": "Hello world, description text here",
         "Field": "Publishing",
-        "SocialProfiles": ["www.website.com", null, null, null],
+        "SocialProfiles": 
+            [
+                {
+                    "Type": "Website",
+                    "Link": "www.website.com"
+                },
+                {
+                    "Type": "Twitter",
+                    "Link": "www.twitter.com"
+                },
+                {
+                    "Type": "Facebook",
+                    "Link": "www.facebook.com"
+                }
+            ],
         "City": "Seattle",
         "Country": "USA"
     },
@@ -17,7 +31,13 @@
         "CompanySize": 800,
         "Description": "Hello world, description text here for mobile industries",
         "Field": "Software Development",
-        "SocialProfiles": ["www.website.com", "twitter.com", "facebook.com", "linkedin.com"],
+        "SocialProfiles": 
+            [
+                {
+                    "Type": "Website",
+                    "Link": "www.website.com"
+                }
+            ],
         "City": "Istanbul",
         "Country": "Turkey"
     }
