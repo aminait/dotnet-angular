@@ -22,9 +22,11 @@
           </div>
           <div class="col-md-8">
             <div class="card-body tl">
+              <!-- Job title -->
               <h5 class="card-title">
                 <a href="#">{{ job.title }}</a>
               </h5>
+              <!-- Company name -->
               <h6 class="card-subtitle mb-2">
                 <a
                   (click)="getCompanyByJobId(job, job.id, template)"
@@ -36,13 +38,15 @@
                 class="card-text container-overflow"
                 [class.show]="job.isExpanded"
               >
-                <p [innerHTML]="job.description">
-                  {{ job.description }}
-                </p>
-
+                <!-- time posted -->
                 <p class="card-text text-muted alignRight">
                   {{ job.timePosted }}
                 </p>
+                <!-- Description -->
+                <p [innerHTML]="job.description">
+                  {{ job.description }}
+                </p>
+                <!-- Listing details -->
                 <ul *ngIf="jobDetails">
                   <li>{{ jobDetails?.type }}</li>
                   <li>{{ jobDetails?.seniority }}</li>
@@ -50,34 +54,28 @@
                   <li>{{ jobDetails?.country }}</li>
                 </ul>
               </div>
+              <!-- Show more details? -->
               <button
                 class="btn btn-outline-secondary mr-2"
                 (click)="getJobDetails(job)"
               >
                 {{ job.isExpanded ? "Show less" : "Show More" }}
               </button>
-              <!-- <button id="&quot;custom-modal-&quot;+&quot;{{ i }}&quot;">
-                Apply
-              </button> -->
-              <!-- <button
-                class="btn btn-outline-primary mr-2"
-                data-toggle="modal"
-                data-target="#exampleModal"
-                (click)="getJobDetails(job, job.id, template)"
-              >
-                See More
-              </button> -->
+
+              <!-- Redirect to External Application Link -->
               <button
                 class="btn btn-outline-success"
-                (click)="showApplicationModal(job.id)"
+                (click)="goToLink('https://www.google.com')"
               >
                 Apply
               </button>
             </div>
           </div>
         </div>
+
         <!-- add footer options -->
         <div class="card-footer border-secondary text-right">
+          <!-- Save and Unsave listings -->
           <a *ngIf="!job.isSaved" (click)="toggleSaved(job)"
             ><i class="fa fa-thumb-tack mr-2"></i>Save</a
           >
@@ -92,6 +90,7 @@
   </div>
 </div>
 
+<!-- Company details modal -->
 <ng-template #template>
   <div class="modal-header">
     <h4 class="modal-title pull-left">{{ jobDetails?.title }}</h4>

@@ -36,10 +36,13 @@ namespace ForHire.API.Models
         public virtual ICollection<ResumeSection> Experience { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
+        public DateTime LastActive { get; set; }
 
         // [ForeignKey("Keyword")]
         // public int SkillId { get; set; }
         public virtual ICollection<Keyword> Skills { get; set; }
+        public virtual ICollection<Message> MessagesSent { get; set; }
+        public virtual ICollection<Message> MessagesReceived { get; set; }
         public DateTime Created { get; set; }
         public DateTime DateOfBirth { get; set; }
 

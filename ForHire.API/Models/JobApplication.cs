@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema; 
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ForHire.API.Models
 {
@@ -15,6 +15,10 @@ namespace ForHire.API.Models
         [ForeignKey("JobListing")]
         public int Id { get; set; }
         public virtual JobListing JobListing { get; set; }
+
+        [ForeignKey("User")]
+        public int UserId { get; set; }
+        public virtual User Candidate { get; set; }
     }
 }
 

@@ -19,16 +19,20 @@ import { MessagesComponent } from './messages/messages.component';
 import { AppliedJobsComponent } from './applied-jobs/applied-jobs.component';
 import { NotifsComponent } from './notifs/notifs.component';
 import { RouterModule } from '@angular/router';
-import { appRoutes } from './routes';
+// import { appRoutes, EmptyComponent } from './routes';
 import { AlertifyService } from './_services/alertify.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeUserComponent } from './home-user/home-user.component';
 import { JobsService } from './_services/jobs.service';
 import { JobsSavedComponent } from './jobs/jobs-saved/jobs-saved.component';
 import { ApplicationModalComponent } from './application-modal/application-modal.component';
+import { JobsListResolver } from './_resolvers/jobs-list.resolver';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { ExternalUrlDirective } from './_directives/external-url.directive';
+import { appRoutes } from './routes';
 
 @NgModule({
-  declarations: [	
+  declarations: [
     AppComponent,
     NavComponent,
     SignupComponent,
@@ -40,8 +44,10 @@ import { ApplicationModalComponent } from './application-modal/application-modal
     NotifsComponent,
     HomeUserComponent,
     JobsSavedComponent,
-      ApplicationModalComponent
-   ],
+    ApplicationModalComponent,
+    NotFoundComponent,
+    ExternalUrlDirective,
+  ],
   imports: [
     BrowserModule,
     CommonModule,
@@ -59,6 +65,7 @@ import { ApplicationModalComponent } from './application-modal/application-modal
     // ErrorInterceptorProvider,
     AlertifyService,
     JobsService,
+    JobsListResolver,
   ],
   bootstrap: [AppComponent],
 })

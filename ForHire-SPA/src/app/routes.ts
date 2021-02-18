@@ -9,6 +9,12 @@ import { NotifsComponent } from './notifs/notifs.component';
 import { SignupComponent } from './signup/signup.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { JobsSavedComponent } from './jobs/jobs-saved/jobs-saved.component';
+import { JobsListResolver } from './_resolvers/jobs-list.resolver';
+import { Component } from '@angular/core';
+import { NotFoundComponent } from './not-found/not-found.component';
+
+@Component({ template: '' })
+export class EmptyComponent {}
 
 export const appRoutes: Routes = [
   {
@@ -30,6 +36,7 @@ export const appRoutes: Routes = [
   {
     path: 'jobs',
     component: JobsListComponent,
+    resolve: { jobs: JobsListResolver },
   },
   {
     path: 'saved',
@@ -56,7 +63,17 @@ export const appRoutes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '',
+    redirectTo: 'not-found',
     pathMatch: 'full',
   },
+  {
+    path: 'not-found',
+    component: NotFoundComponent,
+  },
+  // {
+  //   path: 'externalRedirect',
+  //   canActivate: [externalUrlProvider],
+  //   component: EmptyComponent,
+  //   url: externalUrlProvider,
+  // },
 ];

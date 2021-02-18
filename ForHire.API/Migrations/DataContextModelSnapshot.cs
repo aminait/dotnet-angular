@@ -84,7 +84,12 @@ namespace ForHire.API.Migrations
                     b.Property<string>("Status")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("JobApplications");
                 });
@@ -134,6 +139,9 @@ namespace ForHire.API.Migrations
                     b.Property<bool>("isHidden")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("redirectLink")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CompanyId");
@@ -163,6 +171,45 @@ namespace ForHire.API.Migrations
                     b.HasIndex("UserId1");
 
                     b.ToTable("Keyword");
+                });
+
+            modelBuilder.Entity("ForHire.API.Models.Message", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Content")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("DateRead")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsRead")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("MessageSent")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("RecipientDeleted")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("RecipientId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("SenderDeleted")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("SenderId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RecipientId");
+
+                    b.HasIndex("SenderId");
+
+                    b.ToTable("Messages");
                 });
 
             modelBuilder.Entity("ForHire.API.Models.ResumeSection", b =>
@@ -283,6 +330,9 @@ namespace ForHire.API.Migrations
                     b.Property<string>("HeaderPhotoUrl")
                         .HasColumnType("TEXT");
 
+                    b.Property<DateTime>("LastActive")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("LastName")
                         .HasColumnType("TEXT");
 
@@ -322,6 +372,14 @@ namespace ForHire.API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("ForHire.API.Models.User", "Candidate")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Candidate");
+
                     b.Navigation("JobListing");
                 });
 
@@ -345,6 +403,25 @@ namespace ForHire.API.Migrations
                     b.HasOne("ForHire.API.Models.User", null)
                         .WithMany("Skills")
                         .HasForeignKey("UserId1");
+                });
+
+            modelBuilder.Entity("ForHire.API.Models.Message", b =>
+                {
+                    b.HasOne("ForHire.API.Models.User", "Recipient")
+                        .WithMany("MessagesReceived")
+                        .HasForeignKey("RecipientId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("ForHire.API.Models.User", "Sender")
+                        .WithMany("MessagesSent")
+                        .HasForeignKey("SenderId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Recipient");
+
+                    b.Navigation("Sender");
                 });
 
             modelBuilder.Entity("ForHire.API.Models.ResumeSection", b =>
@@ -405,6 +482,10 @@ namespace ForHire.API.Migrations
                     b.Navigation("Education");
 
                     b.Navigation("Experience");
+
+                    b.Navigation("MessagesReceived");
+
+                    b.Navigation("MessagesSent");
 
                     b.Navigation("RolesOfInterest");
 

@@ -12,6 +12,7 @@ using ForHire.API.Models;
 
 namespace ForHire.API.Controllers
 {
+    [ServiceFilter(typeof(LogUserActivity))]
     // [Authorize]
     [Route("api/[controller]")]
     [ApiController]

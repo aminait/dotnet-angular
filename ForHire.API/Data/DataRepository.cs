@@ -63,9 +63,20 @@ namespace ForHire.API.Data
 
             return result;
         }
+        public async Task<Message> GetMessage(int id)
+        {
+            var msg = await _context.Messages.FirstOrDefaultAsync(u => u.Id == id);
+            return msg;
+        }
 
+        public Task<IEnumerable<Message>> GetMessagesForuser()
+        {
+            throw new System.NotImplementedException();
+        }
 
-
-
+        public Task<IEnumerable<Message>> GetMessageThread(int userId, int recipientId)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

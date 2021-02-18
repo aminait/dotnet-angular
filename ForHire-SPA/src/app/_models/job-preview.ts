@@ -8,4 +8,5 @@ export interface JobPreview {
   isSaved: boolean;
   isHidden: boolean;
   isExpanded: boolean;
+  redirectLink?: string;
 }

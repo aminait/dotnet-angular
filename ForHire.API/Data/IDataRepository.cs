@@ -11,7 +11,9 @@ namespace ForHire.API.Data
         Task<bool> SaveAll();
         Task<IEnumerable<User>> GetUsers();
         Task<User> GetUser(int id);
-
         Task<int> DeleteUser(int? id);
+        Task<Message> GetMessage(int id);
+        Task<IEnumerable<Message>> GetMessagesForuser();
+        Task<IEnumerable<Message>> GetMessageThread(int userId, int recipientId);
     }
 }
