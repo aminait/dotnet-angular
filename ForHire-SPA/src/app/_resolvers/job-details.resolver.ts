@@ -19,7 +19,7 @@ export class JobDetailsResolver implements Resolve<JobDetails> {
       catchError((error) => {
         this.alertify.error('Problem retrieving');
         this.router.navigate(['/jobs']);
-        console.log(error);
+        return Observable.throw(error);
         // return of(null);
       })
     );

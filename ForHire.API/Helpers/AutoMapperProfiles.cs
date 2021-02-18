@@ -53,6 +53,9 @@ namespace ForHire.API.Helpers
             CreateMap<SocialProfilesDto, SocialProfile>();
             CreateMap<SocialProfile, SocialProfilesDto>();
 
+            CreateMap<MessageCreationDto, Message>();
+            CreateMap<Message, MessageReturnDto>();
+
 
             // CreateMap<Photo, PhotosForDetailedDto>();
             // CreateMap<UserForUpdateDto, User>();

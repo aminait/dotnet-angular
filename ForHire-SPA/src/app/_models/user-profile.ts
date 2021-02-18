@@ -1,6 +1,6 @@
 export interface UserProfile {
   id: number;
-  photoUrl: string;
+  photoUrl?: string;
   headerPhotoUrl: string;
   firstName: string;
   lastName: string;

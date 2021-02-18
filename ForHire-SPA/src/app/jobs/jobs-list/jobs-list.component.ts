@@ -36,6 +36,7 @@ export class JobsListComponent implements OnInit {
     this.route.data.subscribe((data) => {
       this.jobs = data['jobs'];
     });
+    console.log('initiating jobs:', this.jobs);
   }
 
   // loadJobPreviews() {

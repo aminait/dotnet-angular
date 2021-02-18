@@ -8,12 +8,12 @@ using Microsoft.AspNetCore.Mvc;
 using ForHire.API.Data;
 using ForHire.API.DTOs;
 using ForHire.API.Models;
-
+using ForHire.API.Helpers;
 
 namespace ForHire.API.Controllers
 {
     [ServiceFilter(typeof(LogUserActivity))]
-    // [Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
@@ -43,7 +43,7 @@ namespace ForHire.API.Controllers
         public async Task<IActionResult> GetUser(int id)
         {
             var user = await _repo.GetUser(id);
-            var userToReturn = _mapper.Map<UserListDto>(user);
+            var userToReturn = _mapper.Map<UserProfileDto>(user);
             return Ok(userToReturn);
         }
 

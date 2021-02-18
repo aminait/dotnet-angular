@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
@@ -16,20 +17,25 @@ import { AuthService } from './_services/auth.service';
 // import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { JobsListComponent } from './jobs/jobs-list/jobs-list.component';
 import { MessagesComponent } from './messages/messages.component';
-import { AppliedJobsComponent } from './applied-jobs/applied-jobs.component';
 import { NotifsComponent } from './notifs/notifs.component';
 import { RouterModule } from '@angular/router';
 // import { appRoutes, EmptyComponent } from './routes';
 import { AlertifyService } from './_services/alertify.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HomeUserComponent } from './home-user/home-user.component';
+import { HomeUserComponent } from './user/home-user/home-user.component';
 import { JobsService } from './_services/jobs.service';
 import { JobsSavedComponent } from './jobs/jobs-saved/jobs-saved.component';
 import { ApplicationModalComponent } from './application-modal/application-modal.component';
 import { JobsListResolver } from './_resolvers/jobs-list.resolver';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { ExternalUrlDirective } from './_directives/external-url.directive';
 import { appRoutes } from './routes';
+import { UserProfileComponent } from './user/user-profile/user-profile.component';
+import { UserProfileResolver } from './_resolvers/user-profile.resolver';
+import { JwtModule } from '@auth0/angular-jwt';
+
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
 
 @NgModule({
   declarations: [
@@ -40,13 +46,12 @@ import { appRoutes } from './routes';
     HomeComponent,
     JobsListComponent,
     MessagesComponent,
-    AppliedJobsComponent,
     NotifsComponent,
     HomeUserComponent,
     JobsSavedComponent,
     ApplicationModalComponent,
     NotFoundComponent,
-    ExternalUrlDirective,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,6 +64,14 @@ import { appRoutes } from './routes';
     BrowserAnimationsModule,
     ModalModule.forRoot(),
     AccordionModule.forRoot(),
+    TabsModule.forRoot(),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ['localhost:5000'],
+        disallowedRoutes: ['localhost:5000/api/auth'],
+      },
+    }),
   ],
   providers: [
     AuthService,
@@ -66,6 +79,7 @@ import { appRoutes } from './routes';
     AlertifyService,
     JobsService,
     JobsListResolver,
+    UserProfileResolver,
   ],
   bootstrap: [AppComponent],
 })
