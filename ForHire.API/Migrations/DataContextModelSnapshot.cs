@@ -212,6 +212,32 @@ namespace ForHire.API.Migrations
                     b.ToTable("Messages");
                 });
 
+            modelBuilder.Entity("ForHire.API.Models.Resume", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PublicId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("Resumes");
+                });
+
             modelBuilder.Entity("ForHire.API.Models.ResumeSection", b =>
                 {
                     b.Property<int>("Id")
@@ -424,6 +450,17 @@ namespace ForHire.API.Migrations
                     b.Navigation("Sender");
                 });
 
+            modelBuilder.Entity("ForHire.API.Models.Resume", b =>
+                {
+                    b.HasOne("ForHire.API.Models.User", "User")
+                        .WithOne("Resume")
+                        .HasForeignKey("ForHire.API.Models.Resume", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("ForHire.API.Models.ResumeSection", b =>
                 {
                     b.HasOne("ForHire.API.Models.User", null)
@@ -486,6 +523,8 @@ namespace ForHire.API.Migrations
                     b.Navigation("MessagesReceived");
 
                     b.Navigation("MessagesSent");
+
+                    b.Navigation("Resume");
 
                     b.Navigation("RolesOfInterest");
 

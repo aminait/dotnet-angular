@@ -78,5 +78,12 @@ namespace ForHire.API.Data
         {
             throw new System.NotImplementedException();
         }
+
+        public async Task<Resume> GetResume(int id)
+        {
+            var resume = await _context.Resumes.FirstOrDefaultAsync(r => r.Id == id);
+
+            return resume;
+        }
     }
 }

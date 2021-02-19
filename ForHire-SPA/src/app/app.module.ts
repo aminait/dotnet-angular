@@ -14,12 +14,10 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './_services/auth.service';
-// import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { JobsListComponent } from './jobs/jobs-list/jobs-list.component';
 import { MessagesComponent } from './messages/messages.component';
 import { NotifsComponent } from './notifs/notifs.component';
 import { RouterModule } from '@angular/router';
-// import { appRoutes, EmptyComponent } from './routes';
 import { AlertifyService } from './_services/alertify.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeUserComponent } from './user/home-user/home-user.component';
@@ -32,6 +30,11 @@ import { appRoutes } from './routes';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
 import { UserProfileResolver } from './_resolvers/user-profile.resolver';
 import { JwtModule } from '@auth0/angular-jwt';
+import { AuthGuard } from './_guards/auth.guard';
+import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
+import { ErrorInterceptorProvider } from './_services/error.interceptor';
+import { ResumeUploadComponent } from './user/user-profile/resume-upload/resume-upload.component';
+import { FileUploadModule } from 'ng2-file-upload';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -52,6 +55,7 @@ export function tokenGetter() {
     ApplicationModalComponent,
     NotFoundComponent,
     UserProfileComponent,
+    ResumeUploadComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,6 +69,7 @@ export function tokenGetter() {
     ModalModule.forRoot(),
     AccordionModule.forRoot(),
     TabsModule.forRoot(),
+    FileUploadModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
@@ -75,11 +80,13 @@ export function tokenGetter() {
   ],
   providers: [
     AuthService,
-    // ErrorInterceptorProvider,
+    ErrorInterceptorProvider,
     AlertifyService,
+    AuthGuard,
     JobsService,
     JobsListResolver,
     UserProfileResolver,
+    PreventUnsavedChanges,
   ],
   bootstrap: [AppComponent],
 })

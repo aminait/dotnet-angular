@@ -9,6 +9,7 @@ namespace ForHire.API.Data
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
         public DbSet<User> Users { get; set; }
+        public DbSet<Resume> Resumes { get; set; }
         public DbSet<JobListing> JobListings { get; set; }
         public DbSet<Company> Companies { get; set; }
         public DbSet<JobApplication> JobApplications { get; set; }

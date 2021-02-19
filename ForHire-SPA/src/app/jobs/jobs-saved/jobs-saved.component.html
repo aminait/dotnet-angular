@@ -12,7 +12,10 @@
       </ul>
     </div>
     <div class="card-body">
-      <div *ngIf="savedJobs.length == 0">No Saved Jobs</div>
+      <div *ngIf="savedJobs.length == 0">
+        <h3>No Saved Jobs</h3>
+        <img src="assets/img/empty.png" class="center" width="65%" />
+      </div>
       <div *ngFor="let savedJob of savedJobs" class="card tl shadow mb-2">
         <div class="row no-gutters">
           <div class="col-md-1">

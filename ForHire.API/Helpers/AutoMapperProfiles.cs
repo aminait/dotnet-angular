@@ -56,6 +56,8 @@ namespace ForHire.API.Helpers
             CreateMap<MessageCreationDto, Message>();
             CreateMap<Message, MessageReturnDto>();
 
+            CreateMap<Resume, ResumeUploadDto>();
+            CreateMap<ResumeUploadDto, Resume>();
 
             // CreateMap<Photo, PhotosForDetailedDto>();
             // CreateMap<UserForUpdateDto, User>();

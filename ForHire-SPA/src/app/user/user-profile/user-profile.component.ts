@@ -40,7 +40,7 @@ export class UserProfileComponent implements OnInit {
       .subscribe(
         (next) => {
           this.alertify.success('Profile updated successfully');
-          this.editForm.reset(this.user);
+          this.editForm!.reset(this.user);
         },
         (error) => {
           this.alertify.error(error);

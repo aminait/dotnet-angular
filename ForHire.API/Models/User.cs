@@ -29,6 +29,7 @@ namespace ForHire.API.Models
 
         // [ForeignKey("ResumeSection")]
         // public int EducationId { get; set; }
+        public virtual Resume Resume { get; set; }
         public virtual ICollection<ResumeSection> Education { get; set; }
 
         // [ForeignKey("ResumeSection")]

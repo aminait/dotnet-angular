@@ -13,6 +13,7 @@ import { Component } from '@angular/core';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
 import { UserProfileResolver } from './_resolvers/user-profile.resolver';
+import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 
 @Component({ template: '' })
 export class EmptyComponent {}
@@ -47,6 +48,7 @@ export const appRoutes: Routes = [
     path: 'profile',
     component: UserProfileComponent,
     resolve: { user: UserProfileResolver },
+    canDeactivate: [PreventUnsavedChanges],
   },
   {
     path: '',
